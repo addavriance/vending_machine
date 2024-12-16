@@ -26,7 +26,6 @@ std::string Visualler::getBorderChar(int bar, int slot, int width) const {
 }
 
 std::string Visualler::getCrossChar(int bar, int slot, int height) const {
-
     if (slot % 2 == 0 && bar % 2 == 0) {
         if (bar == 0) return border.topCross;
         if (bar != height - 1) return border.cross;
@@ -34,13 +33,6 @@ std::string Visualler::getCrossChar(int bar, int slot, int height) const {
     }
 
     return "";
-}
-
-
-void Visualler::visualize_keypad_panel(int startX, int endX, int startY) const {
-    Keypad keypad(startX+2, 5);
-
-    keypad.visualize();
 }
 
 
@@ -84,8 +76,6 @@ void Visualler::visualize_case(int storage_width, int storage_height) const {
     cout_at(endX, 0, border.topRight);
 
     cout_at(endX, endY, border.bottomRight);
-
-    visualize_keypad_panel(startX, endX, startY);
 }
 
 
@@ -115,13 +105,27 @@ void Visualler::visualize_storage(int width, int height) const {
     }
 }
 
+void Visualler::visualize_stats() const {
+    const int stats_x = 27;
+    const int stats_y = 2;
+
+    cout_at(stats_x, stats_y, "Machine balance: " + std::to_string(machine->getBalance()));
+    cout_at(stats_x, stats_y+1, "Your balance: " + std::to_string(machine->getClientBalance()));
+    cout_at(stats_x, stats_y+2, "Keypad temp: " + std::to_string(machine->keypad->getBalance()));
+}
+
+
 void Visualler::visualize() const {
     system("clear");
 
     auto [width, height, _] = machine->getDimensions();
 
-    visualize_storage(width, height);
-    visualize_case(width, height);
+    visualize_storage(width, height); // ⤵
+    visualize_case(width, height); // refactor?
+
+    machine->keypad->visualize();
+
+    visualize_stats();
 
     std::cout.flush();
 }

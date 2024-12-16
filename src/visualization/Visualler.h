@@ -11,6 +11,8 @@ private:
 
     void visualize_storage(int width, int height) const;
 
+    void visualize_stats() const;
+
 public:
     Visualler(std::shared_ptr<VendingMachine> machine);
 
@@ -19,8 +21,6 @@ public:
     std::string getBorderChar(int bar, int slot, int width) const;
 
     std::string getCrossChar(int bar, int slot, int height) const;
-
-    void visualize_keypad_panel(int startX, int endX, int startY) const;
 
     void visualize() const;
 };

@@ -26,4 +26,6 @@ int randint(int min, int max);
 
 void cout_at(int x, int y, const std::string& str);
 
+int findCharIndex(std::vector<std::string> &vec, char searchChar);
+
 #endif //UTILS_H
