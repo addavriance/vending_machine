@@ -17,5 +17,8 @@ public:
 
     std::shared_ptr<Snack> dropSnack();
     bool isSlotEmpty() const { return isEmpty; }
+    bool isSlotFull() const { return isFull; }
     int getDepth() const { return depth; }
+
+    std::vector<std::shared_ptr<Snack>>& getSnacks() { return snacks; };
 };
