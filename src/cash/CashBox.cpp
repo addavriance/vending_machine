@@ -2,7 +2,7 @@
 
 #include <utility>
 
-CashBox::CashBox() : balance(0), balanceLimit(100000), transactionCount(0) {};
+CashBox::CashBox() : balance(0), balanceLimit(3500), transactionCount(0) {};
 CashBox::CashBox(double balLim) : balance(0), balanceLimit(balLim), transactionCount(0) {};
 
 void CashBox::addCash(double amount) {
@@ -30,11 +30,13 @@ double CashBox::getBalance() const {
 std::pair<bool, double> CashBox::process(double price, double amount) {
     transactionCount++;
 
-    double change = price - amount;
+    double change = amount - price;
 
     if (!canProcess(change, amount)) return std::make_pair(false, amount);
 
-    return std::make_pair(true, takeCash(change));
+    addCash(price);
+
+    return std::make_pair(true, change);
 }
 
 bool CashBox::canProcess(double change, double amount) const {
@@ -43,10 +45,6 @@ bool CashBox::canProcess(double change, double amount) const {
     }
 
     if (balance + amount > balanceLimit) {
-        return false;
-    }
-
-    if (balance - change < 0) {
         return false;
     }
 
