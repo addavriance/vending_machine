@@ -1,7 +1,5 @@
 #include "CashBox.h"
 
-#include <utility>
-
 CashBox::CashBox() : balance(0), balanceLimit(3500), transactionCount(0) {};
 CashBox::CashBox(double balLim) : balance(0), balanceLimit(balLim), transactionCount(0) {};
 

@@ -1,7 +1,5 @@
 #include "Keypad.h"
 
-#include "../utils.h"
-
 Keypad::Keypad(): x(0), y(0), temp_cash(0) { }
 Keypad::Keypad(int x, int y): x(x), y(y), temp_cash(0) { }
 

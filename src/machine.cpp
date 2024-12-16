@@ -1,10 +1,5 @@
 #include "machine.h"
 
-#include <iostream>
-
-#include "utils.h"
-#include "storage/BarStorage.h"
-
 VendingMachine::VendingMachine(int w, int h, int d) : width(w), height(h), depth(d),
     storage(std::make_unique<BarStorage>(width, height, depth)),
     cash_box(std::make_unique<CashBox>()),

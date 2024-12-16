@@ -1,5 +1,7 @@
 #pragma once
-#include "../bar/BarLine.h"
+
+#include "../../interfaces/bar/BarLine.h"
+
 #include <vector>
 
 class BarStorage {

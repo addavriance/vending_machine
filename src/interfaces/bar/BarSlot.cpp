@@ -1,5 +1,4 @@
 #include "BarSlot.h"
-#include <iostream>
 
 BarSlot::BarSlot(int d) : depth(d), isEmpty(true), isFull(false) {}
 

@@ -1,5 +1,6 @@
 #ifndef CASHBOX_H
 #define CASHBOX_H
+
 #include <utility>
 
 

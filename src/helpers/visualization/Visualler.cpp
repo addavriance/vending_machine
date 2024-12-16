@@ -1,11 +1,5 @@
 #include "Visualler.h"
 
-#include <iostream>
-#include <ostream>
-
-#include "../utils.h"
-#include "../keypad/Keypad.h"
-
 Visualler::Visualler(std::shared_ptr<VendingMachine> m): machine(std::move(m)) {}
 
 std::string Visualler::getCornerChar(int bar, int slot, int width, int height) const {

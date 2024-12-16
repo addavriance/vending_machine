@@ -2,8 +2,10 @@
 #ifndef STORAGEFILLER_H
 #define STORAGEFILLER_H
 
-#include "../machine.h"
+#include "../../machine.h"
 #include "../utils.h"
+
+#include <iostream>
 #include <vector>
 
 class StorageFiller {

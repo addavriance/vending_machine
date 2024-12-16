@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include "src/machine.h"
-#include "src/client/Client.h"
-#include "src/filler/StorageFiller.h"
+#include "src/objects/client/Client.h"
+#include "src/helpers/filler/StorageFiller.h"
 #include "src/handlers/MouseHandler.h"
-#include "src/visualization/Visualler.h"
+#include "src/helpers/visualization/Visualler.h"
 
 int main() {
     auto client = std::make_shared<Client>();

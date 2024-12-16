@@ -1,8 +1,8 @@
 #ifndef VISUALLER_H
 #define VISUALLER_H
 
-#include "../machine.h"
-
+#include "../../machine.h"
+#include "../utils.h"
 
 class Visualler {
 private:

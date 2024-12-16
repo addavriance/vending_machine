@@ -1,5 +1,4 @@
 #include "BarStorage.h"
-#include <stdexcept>
 
 BarStorage::BarStorage(int w, int h, int d) : width(w), height(h), depth(d) {
     if (w <= 0 || h <= 0 || d <= 0) {

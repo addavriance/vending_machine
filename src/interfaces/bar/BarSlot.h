@@ -1,6 +1,6 @@
 #pragma once
-#include "../item/Snack.h"
-#include <memory>
+
+#include "../../objects/item/Snack.h"
 
 class BarSlot {
 private:

@@ -1,7 +1,5 @@
 #include "StorageFiller.h"
 
-#include <iostream>
-
 std::shared_ptr<Snack> StorageFiller::createRandomSnack() {
     int index = randint(0, snackTemplates.size() - 1);
     auto [icon, name, price, id] = snackTemplates[index];

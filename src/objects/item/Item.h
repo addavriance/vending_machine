@@ -3,7 +3,6 @@
 
 #include <string>
 
-
 class Item {
 protected:
     std::string icon;

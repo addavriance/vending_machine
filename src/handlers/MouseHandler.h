@@ -10,8 +10,8 @@
 
 class MouseHandler {
 private:
-    struct termios oldSettings;
-    struct termios newSettings;
+    termios oldSettings;
+    termios newSettings;
 
     // Структура для хранения координат
     struct Point {

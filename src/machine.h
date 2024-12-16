@@ -1,13 +1,12 @@
 #pragma once
 
 #include <map>
-#include <utility>
 
-#include "storage/BarStorage.h"
-#include "cash/CashBox.h"
-#include "client/Client.h"
-#include "keypad/Keypad.h"
-
+#include "./processors/storage/BarStorage.h"
+#include "./processors/cash/CashBox.h"
+#include "./objects/client/Client.h"
+#include "./interfaces/keypad/Keypad.h"
+#include "./helpers/utils.h"
 
 class VendingMachine {
 
