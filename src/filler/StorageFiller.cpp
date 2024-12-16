@@ -20,7 +20,9 @@ void StorageFiller::fillMachine(const std::shared_ptr<VendingMachine>& machine) 
         for (int slot = 0; slot < width; ++slot) {
             const auto snack = createRandomSnack();
             for (int d = 0; d < depth; ++d) {
-                machine->addSnack(snack, line, slot);
+                if (!machine->addSnack(snack, line, slot)) {
+                    std::cerr << "Failed to add snack at position: " << line << "," << slot << "," << d << std::endl;
+                }
             }
         }
     }
