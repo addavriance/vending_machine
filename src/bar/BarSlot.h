@@ -1,5 +1,5 @@
 #pragma once
-#include "../snack/Snack.h"
+#include "../item/Snack.h"
 #include <memory>
 
 class BarSlot {

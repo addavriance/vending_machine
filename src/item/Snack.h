@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 
-class Snack {
+#include "Item.h"
+
+class Snack : public Item{
 protected:
-    std::string icon;
-    std::string name;
     double price;
     int calories;
     std::string id;
@@ -12,10 +12,8 @@ protected:
 public:
     Snack(const std::string& icon, const std::string& name, double price, int cal, const std::string& snackId);
 
-    virtual ~Snack() = default;
+    ~Snack() override = default;
 
-    std::string getIcon() const { return icon; }
-    std::string getName() const { return name; }
     double getPrice() const { return price; }
     int getCalories() const { return calories; }
     std::string getId() const { return id; }
