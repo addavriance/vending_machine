@@ -2,11 +2,15 @@
 
 #include <iostream>
 
+#include "utils.h"
 #include "storage/BarStorage.h"
 
 VendingMachine::VendingMachine(int w, int h, int d) : width(w), height(h), depth(d),
     storage(std::make_unique<BarStorage>(width, height, depth)),
-    cash_box(std::make_unique<CashBox>()){ }
+    cash_box(std::make_unique<CashBox>()),
+    keypad(std::make_unique<Keypad>(18, 6)) {
+    setupKeypadCallbacks();
+}
 
 std::tuple<int, int, int> VendingMachine::getDimensions() {
     return { width, height, depth };
@@ -16,7 +20,7 @@ bool VendingMachine::addSnack(std::shared_ptr<Snack> snack, int line, int slot) 
     try {
         auto& barslot = storage->getLine(line).getSlot(slot);
 
-        if (!barslot.isSlotEmpty()) { return false; }
+        if (barslot.isSlotFull()) { return false; }
 
         return barslot.addSnack(snack);
     } catch (std::out_of_range& e) {
@@ -37,15 +41,17 @@ std::pair<std::shared_ptr<Snack>, double> VendingMachine::buySnack(int line, int
         BarSlot barslot = storage->getLine(line).getSlot(slot);
         std::shared_ptr<Snack> snack = barslot.getSnack(0);
 
+        if (!snack) {
+            return std::make_pair(nullptr, amount);
+        }
+
         auto [success, change] = cash_box->process(snack->getPrice(), amount);
 
         if (!success) {
             return std::make_pair(nullptr, amount);
         }
 
-        barslot.dropSnack();
-
-        return std::make_pair(snack, change);
+        return std::make_pair(barslot.dropSnack(), change);
     } catch (const std::out_of_range&) {
         return std::make_pair(nullptr, amount);
     }
