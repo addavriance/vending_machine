@@ -57,7 +57,7 @@ public:
                 return true;
             }
 
-            current_client->addBalance(keypad->returnMoney(amount));
+            current_client->addBalance(amount);
 
             return false;
         });
@@ -65,7 +65,6 @@ public:
         keypad->setOnInsertMoney([this](double amount) {
             if (!current_client) return 0.0;
 
-            // Снимаем деньги с клиента и добавляем в кейпад
             double inserted = current_client->takeCash(amount);
             return inserted;
         });
