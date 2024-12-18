@@ -7,6 +7,8 @@
 #include <atomic>
 #include <termios.h>
 #include <chrono>
+#include <iostream>
+#include <unistd.h>
 
 class MouseHandler {
 private:

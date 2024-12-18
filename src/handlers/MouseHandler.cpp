@@ -1,7 +1,4 @@
 #include "MouseHandler.h"
-#include <iostream>
-#include <sys/ioctl.h>
-#include <unistd.h>
 
 MouseHandler::MouseHandler() : isRunning(false) {
     tcgetattr(STDIN_FILENO, &oldSettings);
