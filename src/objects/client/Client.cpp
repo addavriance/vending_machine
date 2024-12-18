@@ -1,22 +1,21 @@
 #include "Client.h"
 
-Client::Client() : inventory_size(10), balance(0.0) {
-    inventory = std::make_shared<std::vector<Item>>();
+Client::Client() : inventory_size(10), balance(0.0), inventory(std::vector<std::shared_ptr<Item>>()) {
 }
 
 Client::~Client() = default;
 
 void Client::addItem(std::shared_ptr<Item>& item) {
-    if (inventory->size() < inventory_size) {
-        inventory->push_back(*item);
+    if (inventory.size() <= inventory_size) {
+        inventory.push_back(std::move(item));
     }
 }
 
-Item Client::dropItem(int index) {
+std::shared_ptr<Item> Client::dropItem(int index) {
 
-    Item empty = inventory->at(index);
-    if (index >= 0 && index < inventory->size()) {
-        inventory->erase(inventory->begin() + index);
+    std::shared_ptr<Item> empty = inventory.at(index);
+    if (index >= 0 && index < inventory.size()) {
+        inventory.erase(inventory.begin() + index);
     }
 
     return empty;
@@ -40,6 +39,6 @@ double Client::takeCash(double amount) {
     return available;
 }
 
-std::shared_ptr<std::vector<Item>> Client::getInventory() {
+std::vector<std::shared_ptr<Item>> Client::getInventory() {
     return inventory;
 }

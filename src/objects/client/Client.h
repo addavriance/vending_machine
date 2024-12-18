@@ -5,7 +5,7 @@
 
 class Client {
 private:
-    std::shared_ptr<std::vector<Item>> inventory;
+    std::vector<std::shared_ptr<Item>> inventory;
 
     int inventory_size;
 
@@ -18,9 +18,9 @@ public:
 
     void addItem(std::shared_ptr<Item>& item);
 
-    Item dropItem(int index);
+    std::shared_ptr<Item> dropItem(int index);
 
-    std::shared_ptr<std::vector<Item>> getInventory();
+    std::vector<std::shared_ptr<Item>> getInventory();
 
     void setBalance(double amount);
 
@@ -29,10 +29,6 @@ public:
     void addBalance(double amount);
 
     double takeCash(double amount);
-
-
-
-
 };
 
 
