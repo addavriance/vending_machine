@@ -48,7 +48,7 @@ std::pair<std::shared_ptr<Snack>, double> VendingMachine::buySnack(int line, int
         }
 
         return std::make_pair(barslot.dropSnack(), change);
-    } catch (const std::out_of_range&) {
+    } catch (std::exception&) {
         return std::make_pair(nullptr, amount);
     }
 }
