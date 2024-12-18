@@ -119,6 +119,8 @@ void Visualler::visualize() const {
 
     machine->keypad->visualize();
 
+    machine->snack_tray->visualize();
+
     visualize_stats();
 
     std::cout.flush();

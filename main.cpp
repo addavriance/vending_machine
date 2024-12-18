@@ -24,6 +24,7 @@ int main() {
 
     handler.onSingleClick([vending_machine](int x, int y) {
         vending_machine->keypad->click(x, y);
+        vending_machine->snack_tray->click(x, y);
     });
 
     handler.startEventLoop();

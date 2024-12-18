@@ -30,4 +30,6 @@ add_executable(vending_machine main.cpp
         src/objects/client/Client.h
         src/objects/item/Item.cpp
         src/objects/item/Item.h
+        src/interfaces/tray/SnackTray.cpp
+        src/interfaces/tray/SnackTray.h
 )

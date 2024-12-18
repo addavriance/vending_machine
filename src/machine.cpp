@@ -3,7 +3,8 @@
 VendingMachine::VendingMachine(int w, int h, int d) : width(w), height(h), depth(d),
     storage(std::make_unique<BarStorage>(width, height, depth)),
     cash_box(std::make_unique<CashBox>()),
-    keypad(std::make_unique<Keypad>(18, 6)) {
+    keypad(std::make_unique<Keypad>(18, 6)),
+    snack_tray(std::make_unique<SnackTray>(3, 12, w + 1)) {
     setupKeypadCallbacks();
 }
 
@@ -36,7 +37,7 @@ std::pair<std::shared_ptr<Snack>, double> VendingMachine::buySnack(int line, int
         BarSlot barslot = storage->getLine(line).getSlot(slot);
         std::shared_ptr<Snack> snack = barslot.getSnack(0);
 
-        if (!snack) {
+        if (!snack || snack_tray->isFull()) {
             return std::make_pair(nullptr, amount);
         }
 

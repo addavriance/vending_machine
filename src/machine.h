@@ -6,7 +6,7 @@
 #include "./processors/cash/CashBox.h"
 #include "./objects/client/Client.h"
 #include "./interfaces/keypad/Keypad.h"
-#include "./helpers/utils.h"
+#include "./interfaces/tray/SnackTray.h"
 
 class VendingMachine {
 
@@ -24,6 +24,8 @@ public:
     VendingMachine(int width, int height, int depth);
 
     std::unique_ptr<Keypad> keypad;
+
+    std::unique_ptr<SnackTray> snack_tray;
 
     std::tuple<int, int, int> getDimensions();
 
@@ -50,10 +52,8 @@ public:
             auto [snack, change] = this->buySnack(line, slot, amount);
 
             if (snack) {
-                // Если покупка успешна
-                current_client->addBalance(change); // Возвращаем сдачу
-                auto item = std::static_pointer_cast<Item>(snack);
-                current_client->addItem(item); // Добавляем в инвентарь
+                current_client->addBalance(change);
+                snack_tray->addSnack(snack);
                 return true;
             }
 
@@ -68,6 +68,11 @@ public:
             // Снимаем деньги с клиента и добавляем в кейпад
             double inserted = current_client->takeCash(amount);
             return inserted;
+        });
+
+        snack_tray->setOnTakeSnack([this](std::shared_ptr<Snack> snack) {
+            std::shared_ptr<Item> item = std::dynamic_pointer_cast<Item>(snack);
+            current_client->addItem(item);
         });
     }
 };

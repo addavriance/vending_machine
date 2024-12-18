@@ -20,8 +20,10 @@ private:
             // "D", "E", "F",
             // "G", "H", "K",
             "1", "2", "3",
-            "×", "⌫", "✓"
+            "×", " ", "✓"
         };
+
+    std::string money_slot = "▭";
 
     std::function<bool(int, int, double)> onBuyRequest;
     std::function<double(double)> onInsertMoney;
@@ -40,7 +42,7 @@ public:
 
     bool insertMoney(double amount) {
         if (onInsertMoney) {
-            temp_cash = onInsertMoney(amount);
+            temp_cash += onInsertMoney(amount);
             return true;
         }
         return false;
