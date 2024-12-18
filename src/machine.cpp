@@ -16,7 +16,7 @@ bool VendingMachine::addSnack(std::shared_ptr<Snack> snack, int line, int slot) 
     try {
         auto& barslot = storage->getLine(line).getSlot(slot);
 
-        if (barslot.isSlotFull()) { return false; }
+        if (barslot.isFull()) { return false; }
 
         return barslot.addSnack(snack);
     } catch (std::out_of_range& e) {

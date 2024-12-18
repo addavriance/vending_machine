@@ -6,8 +6,6 @@ class BarSlot {
 private:
     int depth;
     std::vector<std::shared_ptr<Snack>> snacks;
-    bool isEmpty;
-    bool isFull;
 
 public:
     explicit BarSlot(int d);
@@ -16,9 +14,12 @@ public:
     std::shared_ptr<Snack> getSnack(int index);
 
     std::shared_ptr<Snack> dropSnack();
-    bool isSlotEmpty() const { return isEmpty; }
-    bool isSlotFull() const { return isFull; }
+
     int getDepth() const { return depth; }
+
+    bool isEmpty() const { return snacks.empty(); }
+    bool isFull() const { return snacks.size() == depth; }
+
 
     std::vector<std::shared_ptr<Snack>>& getSnacks() { return snacks; };
 };
