@@ -15,13 +15,13 @@ private:
     int height;
     int depth;
 
-    std::shared_ptr<Client> current_client;
-
     std::unique_ptr<BarStorage> storage;
     std::unique_ptr<CashBox> cash_box;
 
 public:
     VendingMachine(int width, int height, int depth);
+
+    std::shared_ptr<Client> current_client;
 
     std::unique_ptr<Keypad> keypad;
 

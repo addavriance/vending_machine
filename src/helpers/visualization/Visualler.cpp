@@ -103,9 +103,17 @@ void Visualler::visualize_stats() const {
     const int stats_x = 27;
     const int stats_y = 2;
 
+    std::string inventory = "";
+
+    for (int i = 0; i < machine->current_client->getInventory().size(); i++) {
+        std::shared_ptr<Item> item = machine->current_client->getInventory()[i];
+        inventory+= item->getIcon() + " ";
+    }
+
     cout_at(stats_x, stats_y, "Machine balance: " + std::to_string(machine->getBalance()));
     cout_at(stats_x, stats_y+1, "Your balance: " + std::to_string(machine->getClientBalance()));
     cout_at(stats_x, stats_y+2, "Keypad temp: " + std::to_string(machine->keypad->getBalance()));
+    cout_at(stats_x, stats_y+3, "Your inventory: " + inventory);
 }
 
 
